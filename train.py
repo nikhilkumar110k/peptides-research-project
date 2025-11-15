@@ -157,7 +157,7 @@ for epoch in range(masked_epochs):
         agent.replay(batch_size)
 
         if (i + 1) % checkpoint_interval == 0:
-            agent.save(f"masking_agent_checkpoint_{i+1}.keras")  # Save as .keras
+            agent.save(f"masking_agent_checkpoint_{i+1}.pt") 
             torch.save(transformer.state_dict(), f"transformer_masked_checkpoint_{i+1}.pt")
             print(f"Step {i+1} | Last Reward: {reward:.4f} | Masked Tokens: {mask.sum()} / {len(mask)}")
 
@@ -165,7 +165,7 @@ for epoch in range(masked_epochs):
     print(f"Masked Epoch {epoch + 1}/{masked_epochs} | Loss: {total_loss / len(dataset):.4f} | Accuracy: {acc:.4f}")
 
 
-agent.save("masking_agent_final.h5")
+agent.save("masking_agent_final.pt")
 torch.save(transformer.state_dict(), "transformer_final.pt")
 print("✅ Joint training complete. Transformer and DQN agent saved.")
 

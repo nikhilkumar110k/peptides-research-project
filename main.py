@@ -19,7 +19,8 @@ transformer.load_state_dict(torch.load("transformer_masked_checkpoint_1400.pt", 
 transformer.eval()
 
 agent = MaskingDQNAgent(state_size=312, action_size=312)
-agent.load("masking_agent_checkpoint_1400.h5")
+agent.load("masking_agent_checkpoint_1400.pt")
+
 
 def predict_user_sequence(sequence: str):
     
